@@ -1,5 +1,6 @@
 package com.example.firstdemo.controller;
 
+import com.example.firstdemo.dto.LoanRequest;
 import com.example.firstdemo.dto.UserDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 
@@ -26,5 +28,11 @@ public class DemoController {
         System.out.println(userDto);
         userDto.setAge(900);
         return ResponseEntity.ok(Map.of("generated", userDto));
+    }
+
+    @PostMapping("/app/validate")
+    public ResponseEntity<?> validator(@RequestBody final @Valid LoanRequest request){
+        System.out.println(request);
+        return ResponseEntity.ok(Map.of("validated", request));
     }
 }

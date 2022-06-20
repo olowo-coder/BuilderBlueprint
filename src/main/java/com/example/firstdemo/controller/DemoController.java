@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Map;
 
 
@@ -33,6 +35,7 @@ public class DemoController {
     @PostMapping("/app/validate")
     public ResponseEntity<?> validator(@RequestBody final @Valid LoanRequest request){
         System.out.println(request);
-        return ResponseEntity.ok(Map.of("validated", request));
+
+        return ResponseEntity.ok(Map.of("validated", request, "time", new Date()));
     }
 }
